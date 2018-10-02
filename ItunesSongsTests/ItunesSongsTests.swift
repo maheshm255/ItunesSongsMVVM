@@ -22,7 +22,7 @@ class ItunesSongsTests: XCTestCase {
         let track1 = Track(trackName:"name1", artistName:"a1")
         let track2 = Track(trackName:"name2", artistName:"a2")
 
-        trackViewModel?.tracks = [track1,track2]
+        trackViewModel?.tracks = Tracks(results: [track1,track2])
         
         let numberOfTracks =  trackViewModel?.numberOfTracks()
         
