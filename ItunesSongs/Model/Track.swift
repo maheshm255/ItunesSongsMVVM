@@ -8,8 +8,13 @@
 
 import Foundation
 
+struct Tracks:Codable {
+    
+    var results:[Track]?
+    
+}
 
-struct Track {
+struct Track:Codable {
     
     var trackName:String?
     var artistName:String?

@@ -14,7 +14,7 @@ protocol TrackViewModelProtocol {
 
 class TrackViewModel:TrackViewModelProtocol {
     
-     var tracks:[Track]?{
+     var tracks:Tracks?{
         didSet {
             trackViewController?.refreshUI()
         }
@@ -43,20 +43,20 @@ class TrackViewModel:TrackViewModelProtocol {
     }
     
     func numberOfTracks() -> Int {
-        if let _tracks = tracks {
+        if let _tracks = tracks?.results {
             return _tracks.count
         }
         return 0
     }
     
     func trackName(index:Int) -> String {
-        if let _tracks = tracks , let name = _tracks[index].trackName  {
+        if let _tracks = tracks?.results , let name = _tracks[index].trackName  {
             return name
         }
         return ""
     }
     func artistName(index:Int) -> String {
-        if let _tracks = tracks , let name = _tracks[index].artistName  {
+        if let _tracks = tracks?.results , let name = _tracks[index].artistName  {
             return name
         }
         return ""
