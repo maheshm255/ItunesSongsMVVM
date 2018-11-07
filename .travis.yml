@@ -2,4 +2,4 @@
 language: swift
 xcode_project: ItunesSongs.xcodeproj # path to your xcodeproj folder
 xcode_scheme: ItunesSongsTests
-xcode_destination: platform=iOS Simulator,OS=10.1,name=iPad Pro (9.7-inch)
+xcode_destination: platform=iOS Simulator,OS=11.2,name=iPhone X
