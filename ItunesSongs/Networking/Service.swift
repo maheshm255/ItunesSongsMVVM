@@ -10,20 +10,24 @@ import Foundation
 
 
 typealias jsonDictionery = [String: Any]
-typealias completionHandler = (Tracks?,String?) -> ()
+typealias completionHandler<V:Decodable> = (V? , String?) -> ()
 
 protocol  ServiceProtocol {
-    func get(baseUrl:String, path:String, parameters:String,completion: @escaping completionHandler)
+    associatedtype V: Decodable
+    func get(baseUrl:String, path:String, parameters:String,completion: @escaping completionHandler<V>)
 }
 
 
-class Service:ServiceProtocol {
-
+class Service<Model:Decodable>:ServiceProtocol,GenericJsonDecodable {
+    typealias V = Model
+    typealias IN = Data
+    typealias OUT = Model
+    
     let urlSesson = URLSession(configuration: .default)
     var dataTask:URLSessionDataTask?
     var errorMessage:String?
     
-    func get(baseUrl: String, path: String, parameters: String, completion:@escaping completionHandler) {
+    func get(baseUrl: String, path: String, parameters: String, completion:@escaping completionHandler<V>) {
         dataTask?.cancel()
         guard var urlComponents = URLComponents(string:baseUrl + path) else {
             errorMessage = "URL is not correct"
@@ -39,11 +43,17 @@ class Service:ServiceProtocol {
                 self.errorMessage = "responce error \(_error.localizedDescription)"
             }else if let _data = data , let _responce = responce as? HTTPURLResponse , _responce.statusCode == 200 {
                 
-                if let tracks = try? JSONDecoder().decode(Tracks.self, from: _data) {
+                if let tracks =  self.decode(input: _data) {
                     DispatchQueue.main.async {
                         completion(tracks, self.errorMessage)
                     }
                 }
+                
+//                if let tracks = try? JSONDecoder().decode(Tracks.self, from: _data) {
+//                    DispatchQueue.main.async {
+//                        completion(tracks, self.errorMessage)
+//                    }
+//                }
             }
         }
        dataTask?.resume()

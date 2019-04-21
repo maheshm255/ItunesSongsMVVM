@@ -24,7 +24,7 @@ class TrackViewModel:TrackViewModelProtocol {
             trackViewController?.showError(message:self.errorMessage!)
         }
     }
-    let service:Service = Service()
+    let service:Service<Tracks> = Service()
     weak var trackViewController:TrackViewController?
     
     init(trackViewController:TrackViewController) {
@@ -44,7 +44,7 @@ class TrackViewModel:TrackViewModelProtocol {
     
     func numberOfTracks() -> Int {
         if let _tracks = tracks?.results {
-            return _tracks.count
+            return _tracks.count 
         }
         return 0
     }

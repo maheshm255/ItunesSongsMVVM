@@ -20,6 +20,8 @@
 		044ECA2B207146A0001289BF /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044ECA282071469F001289BF /* TrackCell.swift */; };
 		044ECA2C207146A0001289BF /* TrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044ECA2A2071469F001289BF /* TrackViewController.swift */; };
 		044ECA31207146D7001289BF /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044ECA30207146D7001289BF /* TrackViewModel.swift */; };
+		ED2DCCAC2255EA2800A477F4 /* GenericJsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED2DCCAB2255EA2800A477F4 /* GenericJsonDecoder.swift */; };
+		ED4319EB225BCF1A00354921 /* TrackViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4319EA225BCF1A00354921 /* TrackViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		044ECA282071469F001289BF /* TrackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
 		044ECA2A2071469F001289BF /* TrackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackViewController.swift; sourceTree = "<group>"; };
 		044ECA30207146D7001289BF /* TrackViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		ED2DCCAB2255EA2800A477F4 /* GenericJsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericJsonDecoder.swift; sourceTree = "<group>"; };
+		ED4319EA225BCF1A00354921 /* TrackViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 			children = (
 				044EC9F52071114E001289BF /* ItunesSongsTests.swift */,
 				044EC9F72071114E001289BF /* Info.plist */,
+				ED4319EA225BCF1A00354921 /* TrackViewModelTests.swift */,
 			);
 			path = ItunesSongsTests;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				044ECA1B207116CA001289BF /* Service.swift */,
+				ED2DCCAB2255EA2800A477F4 /* GenericJsonDecoder.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2DCCAC2255EA2800A477F4 /* GenericJsonDecoder.swift in Sources */,
 				044ECA31207146D7001289BF /* TrackViewModel.swift in Sources */,
 				044ECA2B207146A0001289BF /* TrackCell.swift in Sources */,
 				044EC9E12071114E001289BF /* AppDelegate.swift in Sources */,
@@ -348,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED4319EB225BCF1A00354921 /* TrackViewModelTests.swift in Sources */,
 				044EC9F62071114E001289BF /* ItunesSongsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
