@@ -14,7 +14,7 @@ protocol TrackViewModelProtocol {
 
 class TrackViewModel:TrackViewModelProtocol {
     
-     var tracks:Tracks?{
+    var tracks:Tracks?{
         didSet {
             trackViewController?.refreshUI()
         }
@@ -31,15 +31,19 @@ class TrackViewModel:TrackViewModelProtocol {
         self.trackViewController = trackViewController
     }
     func searchTracks(searchText:String?) {
-         guard let _searchText = searchText , _searchText.count > 0 else {
+        guard let _searchText = searchText , _searchText.count > 0 else {
             return
-         }
-        service.get(baseUrl:EndPoints.baseUrl.rawValue, path:EndPointsPath.search.rawValue, parameters:"media=music&entity=song&term=\(_searchText)", completion: { (tracks, error) in
-            if let _error = error {
-                self.errorMessage = _error
+        }
+        service.fetchDataFrom(baseUrl:EndPoints.baseUrl.rawValue, path:EndPointsPath.search.rawValue, parameters:"media=music&entity=song&term=\(_searchText)") { (result ) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let model):
+                    self.tracks = model
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                }
             }
-            self.tracks = tracks
-        })
+        }
     }
     
     func numberOfTracks() -> Int {

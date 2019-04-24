@@ -9,54 +9,46 @@
 import Foundation
 
 
-typealias jsonDictionery = [String: Any]
-typealias completionHandler<V:Decodable> = (V? , String?) -> ()
-
-protocol  ServiceProtocol {
-    associatedtype V: Decodable
-    func get(baseUrl:String, path:String, parameters:String,completion: @escaping completionHandler<V>)
+enum NetworkError:Error {
+    case malformedURL(message:String)
+    case errorWith(response:URLResponse?)
+    case dataParsinFailed
 }
 
+typealias completionHandler<OUT:Decodable> = (Result<OUT , NetworkError>) -> Void
 
-class Service<Model:Decodable>:ServiceProtocol,GenericJsonDecodable {
-    typealias V = Model
-    typealias IN = Data
+protocol  ServiceProtocol {
+    associatedtype OUT: Decodable
+    func fetchDataFrom(baseUrl:String, path:String, parameters:String, completion:  @escaping completionHandler<OUT>)
+}
+
+class Service<Model:Decodable>:ServiceProtocol, GenericJsonDecodable {
     typealias OUT = Model
-    
     let urlSesson = URLSession(configuration: .default)
     var dataTask:URLSessionDataTask?
-    var errorMessage:String?
-    
-    func get(baseUrl: String, path: String, parameters: String, completion:@escaping completionHandler<V>) {
+    func fetchDataFrom(baseUrl: String, path: String, parameters: String, completion: @escaping (Result<Model, NetworkError>) -> Void) {
         dataTask?.cancel()
         guard var urlComponents = URLComponents(string:baseUrl + path) else {
-            errorMessage = "URL is not correct"
+            completion(.failure(.malformedURL(message:"URL is not correct")))
             return
         }
         urlComponents.query = "\(parameters)"
         guard let url = urlComponents.url else {
-            errorMessage = "URL is nil"
+            completion(.failure(.malformedURL(message:"URL is nil")))
             return
         }
         dataTask =  urlSesson.dataTask(with:url) { (data, responce, error)  in
-            if let _error = error {
-                self.errorMessage = "responce error \(_error.localizedDescription)"
-            }else if let _data = data , let _responce = responce as? HTTPURLResponse , _responce.statusCode == 200 {
-                
-                if let tracks =  self.decode(input: _data) {
-                    DispatchQueue.main.async {
-                        completion(tracks, self.errorMessage)
-                    }
-                }
-                
-//                if let tracks = try? JSONDecoder().decode(Tracks.self, from: _data) {
-//                    DispatchQueue.main.async {
-//                        completion(tracks, self.errorMessage)
-//                    }
-//                }
+            guard let data = data , let _responce = responce as? HTTPURLResponse , _responce.statusCode == 200 else {
+                completion(.failure(.errorWith(response: responce)))
+                return
+            }
+            if let tracks =  self.decode(input: data) {
+                completion(.success(tracks))
+            }else {
+                completion(.failure(.dataParsinFailed))
             }
         }
-       dataTask?.resume()
+        dataTask?.resume()
     }
 }
 

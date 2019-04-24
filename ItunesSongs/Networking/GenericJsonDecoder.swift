@@ -8,7 +8,6 @@
 import Foundation
 
 protocol GenericJsonDecodable {
-    associatedtype IN
     associatedtype OUT:Decodable
     func decode(input:Data) -> OUT?
 }
@@ -18,7 +17,6 @@ extension GenericJsonDecodable {
         do {
            return  try JSONDecoder().decode(OUT.self, from: input)
         }catch {
-            print(error.localizedDescription)
             return nil
         }
     }
