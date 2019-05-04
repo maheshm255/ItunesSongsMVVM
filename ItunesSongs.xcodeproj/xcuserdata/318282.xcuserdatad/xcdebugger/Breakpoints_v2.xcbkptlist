@@ -10,12 +10,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ItunesSongs/Networking/Service.swift"
-            timestampString = "576058820.448835"
+            timestampString = "578659857.7725281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "fetchDataFrom(baseUrl:path:parameters:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ItunesSongs.Service.fetchDataFrom(baseUrl: Swift.String, path: Swift.String, parameters: Swift.String, completion: (Swift.Result&lt;A, ItunesSongs.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ItunesSongs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/318282/Documents/Projects/MVVMItunes/ItunesSongsMVVM/ItunesSongs/Networking/Service.swift"
+                  timestampString = "578659457.738363"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "1574">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in ItunesSongs.Service.fetchDataFrom(baseUrl: Swift.String, path: Swift.String, parameters: Swift.String, completion: (Swift.Result&lt;A, ItunesSongs.NetworkError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "ItunesSongs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/318282/Documents/Projects/MVVMItunes/ItunesSongsMVVM/ItunesSongs/Networking/Service.swift"
+                  timestampString = "578659457.740088"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "412">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ItunesSongsTests/TrackViewModelTests.swift"
+            timestampString = "578659857.772602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "tearDown()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ItunesSongsTests/TrackViewModelTests.swift"
+            timestampString = "578659857.7729729"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "fetchDataFrom(baseUrl:path:parameters:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ItunesSongs/ViewModel/TrackViewModel.swift"
+            timestampString = "578659857.773221"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "searchTracks(searchText:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ItunesSongs/ViewModel/TrackViewModel.swift"
+            timestampString = "578659857.773272"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "searchTracks(searchText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

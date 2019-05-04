@@ -16,6 +16,7 @@ enum NetworkError:Error {
 }
 
 typealias completionHandler<OUT:Decodable> = (Result<OUT , NetworkError>) -> Void
+typealias completionHandler1<OUT:Decodable> = (OUT, Error) -> Void
 
 protocol  ServiceProtocol {
     associatedtype OUT: Decodable

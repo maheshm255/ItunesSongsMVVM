@@ -13,16 +13,15 @@ protocol TrackViewControllerProttocol {
     func showError(message:String)
 }
 class TrackViewController: UIViewController {
-
     @IBOutlet weak var tracksTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var trackViewModel:TrackViewModel!
+    var trackViewModel:TrackViewModel<Service<Tracks>>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        trackViewModel = TrackViewModel(trackViewController:self)
+        trackViewModel = TrackViewModel(trackViewController:self, service: Service())
         // Do any additional setup after loading the view.
     }
 

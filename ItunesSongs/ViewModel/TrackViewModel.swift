@@ -12,37 +12,45 @@ protocol TrackViewModelProtocol {
     func searchTracks(searchText:String?)
 }
 
-class TrackViewModel:TrackViewModelProtocol {
+class TrackViewModel<T:ServiceProtocol>:TrackViewModelProtocol {
     
     var tracks:Tracks?{
         didSet {
-            trackViewController?.refreshUI()
+            DispatchQueue.main.async {
+                self.trackViewController?.refreshUI()
+            }
         }
     }
     var errorMessage:String? {
         didSet{
-            trackViewController?.showError(message:self.errorMessage!)
+            DispatchQueue.main.async {
+                self.trackViewController?.showError(message:self.errorMessage!)
+            }
         }
     }
-    let service:Service<Tracks> = Service()
+    var service:T!
     weak var trackViewController:TrackViewController?
     
-    init(trackViewController:TrackViewController) {
+    init(trackViewController:TrackViewController, service:T) {
         self.trackViewController = trackViewController
+        self.service = service
     }
     func searchTracks(searchText:String?) {
         guard let _searchText = searchText , _searchText.count > 0 else {
             return
         }
-        service.fetchDataFrom(baseUrl:EndPoints.baseUrl.rawValue, path:EndPointsPath.search.rawValue, parameters:"media=music&entity=song&term=\(_searchText)") { (result ) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let model):
-                    self.tracks = model
-                case .failure(let error):
-                    self.errorMessage = error.localizedDescription
-                }
+        service.fetchDataFrom(baseUrl:EndPoints.baseUrl.rawValue, path:EndPointsPath.search.rawValue, parameters:"media=music&entity=song&term=\(_searchText)") { [weak self] (result )  in
+            // DispatchQueue.main.async {
+            switch result {
+            case .success(let model):
+                self?.tracks = model as? Tracks
+            case .failure(let error):
+                
+                self?.errorMessage = error.localizedDescription
+                
+                print(self?.errorMessage)
             }
+            //}
         }
     }
     

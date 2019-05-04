@@ -10,11 +10,12 @@ import XCTest
 
 class TrackViewModelTests: XCTestCase {
 
-    var viewModel:TrackViewModel!
+    var viewModel:TrackViewModel<ServiceMock<Tracks>>!
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         let viewController = TrackViewController()
-       viewModel = TrackViewModel(trackViewController:viewController)
+        let serviceMock = ServiceMock<Tracks>()
+       viewModel = TrackViewModel(trackViewController:viewController, service:serviceMock)
     }
 
     override func tearDown() {
@@ -52,4 +53,27 @@ class TrackViewModelTests: XCTestCase {
         XCTAssertEqual(name, nil,"Name are not equal ")
     }
     
+    func testService() {
+        
+        
+        viewModel.searchTracks(searchText: "a")
+
+        
+     XCTAssertEqual(viewModel.errorMessage!, "The operation couldn’t be completed. (ItunesSongs.NetworkError error 2.)" ,"test")
+       
+    }
+    
+    
+    
+}
+
+
+
+class ServiceMock<Model:Decodable>: ServiceProtocol {
+   
+    typealias OUT = Model
+    
+    func fetchDataFrom(baseUrl: String, path: String, parameters: String, completion: @escaping (Result<Model, NetworkError>) -> Void) {
+            completion(.failure(.dataParsinFailed))
+    }
 }
