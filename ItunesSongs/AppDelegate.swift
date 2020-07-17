@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("checking")
         print("checking1")
         print("checking2")
+        print("checking3")
         customizeAppearance()
         return true
     }
