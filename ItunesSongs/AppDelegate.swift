@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print("checking")
         print("checking1")
+        print("checking2")
         customizeAppearance()
         return true
     }
